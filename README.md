@@ -5,7 +5,7 @@ When the script is run, it first reads the config.json file to get the necessary
 
 The script then defines several helper functions for converting seconds to a human-readable format, deriving a private key from a seed phrase, estimating the time to a specific block on the Ethereum L1 network, waiting for a specific block on the Ethereum L1 network, and claiming tokens from the token distributor contract.
 
-Next, the script defines the main main() function which creates a worker for each private key/seed phrase in the keys.txt file, and executes each worker in parallel using Promise.all(). Each worker claims tokens from the token distributor contract using the private key and sends the transaction to the Ethereum L1 network.
+Next, the script defines the main main() function which creates a worker for each private key/seed phrase in the keys.txt file, and executes each worker in parallel using Promise.all(). Each worker claims tokens from the token distributor contract using the private key and sends the transaction to the Arbitrum L2 network.
 
 After all the workers have completed, the main() function prints a summary of the successful token claims to the console.
 

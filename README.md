@@ -1,7 +1,5 @@
 # Arbitrum-ARB-token-claimer
-Multithread ARB token claimer
-
-The claim.js script is a Node.js script that claims tokens from a smart contract on the Arbitrum L2 network using multiple private keys and seed phrases stored in a keys.txt file. It uses the Web3 library to interact with the Arbitrum network and the async-mutex library to prevent concurrent writes to a shared successfulClaims array.
+Node.js script that claims tokens from a smart contract on the Arbitrum L2 network using multiple private keys and seed phrases stored in a keys.txt file. It uses the Web3 library to interact with the Arbitrum network and the async-mutex library to prevent concurrent writes to a shared successfulClaims array.
 
 When the script is run, it first reads the config.json file to get the necessary configuration parameters like the ABI and address of the token distributor contract, the network URL, gas price, and gas limit. It then reads the keys.txt file to get the private keys and seed phrases for the wallets to use for claiming tokens.
 

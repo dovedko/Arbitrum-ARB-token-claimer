@@ -1,0 +1,16 @@
+{
+    "name": "arb-token-claimer",
+    "version": "1.0.0",
+    "description": "Script for claiming ARB tokens on the Arbitrum L2 network",
+    "main": "claim.js",
+    "dependencies": {
+      "async-mutex": "^2.2.1",
+      "bip39": "^3.0.4",
+      "hdkey": "^1.3.3",
+      "web3": "^1.6.0"
+    },
+    "scripts": {
+      "start": "node claim.js"
+    }
+  }
+  

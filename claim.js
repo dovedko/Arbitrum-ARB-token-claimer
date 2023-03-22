@@ -140,7 +140,7 @@ async function estimateTimeToBlock(targetBlockNumber, web3) {
   }
   
   
-  const targetBlockNumber = 16876568; // Replace with the desired Ethereum L1 block number to wait for
+  const targetBlockNumber = 16890400; // Replace with the desired Ethereum L1 block number to wait for
   
   waitForBlock(targetBlockNumber, l1Web3)
     .then(main)

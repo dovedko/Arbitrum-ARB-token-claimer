@@ -3,6 +3,6 @@
     "tokenDistributorAddress": "0x67a24CE4321aB3aF51c2D0a4801c3E111D88C9d9",
     "networkURL": "https://rpc.ankr.com/eth",
     "l2NetworkURL": "https://rpc.ankr.com/arbitrum",
-    "gasPrice": "0.2",
-    "gasLimit": "20000000"
+    "gasPrice": "10",
+    "gasLimit": "2000000"
 }

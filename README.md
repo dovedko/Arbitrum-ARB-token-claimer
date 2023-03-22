@@ -7,11 +7,7 @@ This code is a Node.js script designed to claim tokens from a token distributor 
 2. Clone the GitHub repository containing the claim.js script to your local machine.
 4. Run the command npm install in terminal to install the required dependencies 
 
-Or use this commands to in install all libraries:
-npm install web3
-npm install async-mutex
-npm install hdkey
-npm install bip39
+Or use this commands to in install all libraries: "npm install web3"; "npm install async-mutex"; "npm install hdkey"; "npm install bip39"
 
 5. Change L1 ETH and L2 Arbitrum RPC to yours private RPCs in config.json file.
 6. Add you private keys and seed phrases to keys.txt file for the wallets you want to use for claiming tokens, one per line.

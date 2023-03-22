@@ -30,13 +30,20 @@ function secondsToHMS(seconds) {
   return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${remainingSeconds.toFixed(0).toString().padStart(2, '0')}`;
 }
 
-function derivePrivateKey(seedPhrase, index) {
+function derivePrivateKeys(seedPhrase, count, startIndex = 0) {
   const seed = bip39.mnemonicToSeedSync(seedPhrase);
   const hdWallet = hdkey.fromMasterSeed(seed);
-  const walletPath = "m/44'/60'/0'/0/" + index;
-  const wallet = hdWallet.derive(walletPath);
-  return wallet.privateKey.toString('hex');
+  const privateKeys = [];
+
+  for (let i = startIndex; i < startIndex + count; i++) {
+    const walletPath = "m/44'/60'/0'/0/" + i;
+    const wallet = hdWallet.derive(walletPath);
+    privateKeys.push(wallet.privateKey.toString('hex'));
+  }
+
+  return privateKeys;
 }
+
 
 async function claimTokens(key, walletNumber) {
   const privateKey = key.startsWith('0x') ? key : '0x' + key;
@@ -105,12 +112,21 @@ async function estimateTimeToBlock(targetBlockNumber, web3) {
   
   async function main() {
     const workers = [];
+    const numKeysPerSeed = 1; // Set the desired number of keys to generate per seed phrase
+  
     for (let i = 0; i < keysAndSeedPhrases.length; i++) {
       const keyOrSeedPhrase = keysAndSeedPhrases[i].trim();
       if (keyOrSeedPhrase) {
-        const privateKey = bip39.validateMnemonic(keyOrSeedPhrase) ? derivePrivateKey(keyOrSeedPhrase, 0) : keyOrSeedPhrase;
-        const worker = claimTokens(privateKey, i + 1);
-        workers.push(worker);
+        if (bip39.validateMnemonic(keyOrSeedPhrase)) {
+          const privateKeys = derivePrivateKeys(keyOrSeedPhrase, numKeysPerSeed);
+          privateKeys.forEach((privateKey, index) => {
+            const worker = claimTokens(privateKey, i + 1 + index);
+            workers.push(worker);
+          });
+        } else {
+          const worker = claimTokens(keyOrSeedPhrase, i + 1);
+          workers.push(worker);
+        }
       }
     }
   
@@ -123,7 +139,8 @@ async function estimateTimeToBlock(targetBlockNumber, web3) {
     });
   }
   
-  const targetBlockNumber = 16890400; // Replace with the desired Ethereum L1 block number to wait for
+  
+  const targetBlockNumber = 16876568; // Replace with the desired Ethereum L1 block number to wait for
   
   waitForBlock(targetBlockNumber, l1Web3)
     .then(main)
@@ -131,4 +148,4 @@ async function estimateTimeToBlock(targetBlockNumber, web3) {
       console.error('Error:', error);
     });
   
-  
+

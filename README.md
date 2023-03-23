@@ -13,3 +13,5 @@ Or use this commands to in install all libraries: "npm install web3"; "npm insta
 6. Add you private keys and seed phrases to keys.txt file for the wallets you want to use for claiming tokens, one per line.
 7. Change numKeysPerSeed in claim.js if you want extract more than one private key from each seed phrase, defalt settings is 1.
 7. Type in terminal command node claim.js or npm start to run the script.
+
+In case of other errors, please inquire with ChatGPT or search on Google, as these issues may stem from your end. The script has been tested with close associates and is functional. However, as the actual claim will be the true test, a 100% guarantee cannot be provided that you will be the first to claim ARB. Please proceed with caution.
